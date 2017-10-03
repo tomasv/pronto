@@ -51,6 +51,13 @@ module Pronto
         require "pronto/#{gem_name}"
       end
 
+      custom_path = ::Pronto::Config.new.custom_runner_path
+      if custom_path
+        Dir["#{custom_path}/*.rb"].each { |runner_path|
+          require(Pathname(Dir.pwd) + runner_path)
+        }
+      end
+
       formatters = ::Pronto::Formatter.get(options[:formatters])
 
       commit_options = %i[staged unstaged index]

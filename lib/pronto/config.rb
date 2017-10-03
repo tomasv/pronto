@@ -58,5 +58,9 @@ module Pronto
         verbose ? Logger.new($stdout) : Logger.silent
       end
     end
+
+    def custom_runner_path
+      @config_hash['custom_runner_path']
+    end
   end
 end
